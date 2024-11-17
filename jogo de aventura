@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo de Aventura</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game">
+    <h1>Jogo de Aventura</h1>
+    <p id="story">Você está em uma sala escura. O que você quer fazer?</p>
+    <div id="actions">
+      <button onclick="lookAround()">Olhar ao redor</button>
+      <button onclick="openChest()">Abrir o baú</button>
+      <button onclick="exitRoom()">Sair da sala</button>
+    </div>
+    <p id="score">Pontos: 0</p>
+    <p id="message"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>let score = 0;
+
+function updateScore(points) {
+  score += points;
+  document.getElementById("score").textContent = "Pontos: " + score;
+}
+
+function lookAround() {
+  document.getElementById("story").textContent = "Você vê uma sala cheia de sombras, mas há um baú no canto.";
+  document.getElementById("message").textContent = "Você olhou ao redor e percebeu algo estranho!";
+  updateScore(5);
+}
+
+function openChest() {
+  document.getElementById("story").textContent = "Você abriu o baú e encontrou uma joia brilhante!";
+  document.getElementById("message").textContent = "Parabéns! Você encontrou uma joia e ganhou pontos!";
+  updateScore(10);
+}
+
+function exitRoom() {
+  if (score >= 15) {
+    document.getElementById("story").textContent = "Você sai da sala vitorioso!";
+    document.getElementById("message").textContent = "Parabéns! Você completou o jogo!";
+    document.getElementById("actions").style.display = "none";
+  } else {
+    document.getElementById("message").textContent = "Você precisa de mais pontos para sair da sala!";
+  }
+}body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  
+  #game {
+    text-align: center;
+    max-width: 400px;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  #message {
+    margin-top: 15px;
+    font-weight: bold;
+  }
